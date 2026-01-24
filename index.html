@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – DOCVAULT.io</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body class="auth-page">
+  <div class="auth-container">
+    <header class="top-bar">
+      <h1>⚖️ DOCVAULT</h1>
+      <p>Exclusively for legal professionals</p>
+    </header>
+    <main class="auth-main">
+      <div class="auth-tabs">
+        <button id="loginTab" class="tab-btn active">Login</button>
+        <button id="signupTab" class="tab-btn">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="auth-form active-form">
+        <h2>Welcome Back</h2>
+        
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" name="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="password" placeholder="••••••••" required />
+        </div>
+
+        <!-- TERMS & CONDITIONS CHECKBOX FOR LOGIN -->
+        <div class="terms-checkbox-group">
+          <input type="checkbox" id="loginTermsCheckbox" name="loginTerms" />
+          <label for="loginTermsCheckbox">
+            I have read and accept the <a href="#" id="loginTermsLink" onclick="openTermsModal(event)">Terms & Conditions</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit" id="loginSubmitBtn" disabled>Log In</button>
+        <p class="form-hint">Don't have an account? <span id="switchToSignup" style="color: #2563eb; cursor: pointer;">Sign up here</span></p>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form id="signupForm" class="auth-form">
+        <h2>Create Your Account</h2>
+        
+        <div class="form-group">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" name="name" placeholder="John Doe" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" name="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" name="password" placeholder="••••••••" required />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required />
+        </div>
+
+        <div class="form-group">
+          <label for="roleSelect">I am a:</label>
+          <select id="roleSelect" name="role" required>
+            <option value="">-- Select Role --</option>
+            <option value="lawyer">Lawyer / Advocate (through firm)</option>
+            <option value="paralegal">Independent lawyers / Legal Assistant</option>
+            <option value="gst">GST Employee</option>
+            <option value="ca">Chartered Accountant</option>
+            <option value="student">Student / Researcher</option>
+          </select>
+        </div>
+
+        <!-- Hidden lawyer fields -->
+        <div id="lawyerFields" class="hidden">
+          <div class="form-group">
+            <label for="barNumber">Bar Enrollment Number (Optional)</label>
+            <input type="text" id="barNumber" name="barNumber" placeholder="e.g., AP/2000/123" />
+          </div>
+
+          <div class="form-group">
+            <label for="firmName">Firm / Organization Name</label>
+            <input type="text" id="firmName" name="firmName" placeholder="Law Firm Inc." />
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="India" />
+          </div>
+        </div>
+
+        <!-- TERMS & CONDITIONS CHECKBOX FOR SIGNUP -->
+        <div class="terms-checkbox-group">
+          <input type="checkbox" id="signupTermsCheckbox" name="signupTerms" />
+          <label for="signupTermsCheckbox">
+            I have read and accept the <a href="#" id="signupTermsLink" onclick="openTermsModal(event)">Terms & Conditions</a>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit" id="signupSubmitBtn" disabled>Create Account</button>
+        <p class="form-hint">Already have an account? <span id="switchToLogin" style="color: #2563eb; cursor: pointer;">Log in here</span></p>
+      </form>
+
+      <!-- Status / Messages -->
+      <div class="status" id="authStatus"></div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer">
+        <strong>⚠️ Important Disclaimer:</strong> This system is a decision-support tool only and does NOT provide legal advice. 
+        All analysis must be reviewed by a qualified legal professional before use.
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 DOCVAULT.io – For Legal Professionals</p>
+    </footer>
+  </div>
+
+  <!-- TERMS & CONDITIONS MODAL -->
+  <div class="terms-modal-overlay" id="termsModalOverlay">
+    <div class="terms-modal-content">
+      <!-- Header -->
+      <div class="terms-modal-header">
+        <h2>⚖️ Terms & Conditions</h2>
+        <button class="close-modal" onclick="closeTermsModal()">&times;</button>
+      </div>
+
+      <!-- Body (Scrollable) -->
+      <div class="terms-modal-body">
+        <h3>1. Disclaimer of Liability</h3>
+        <p>DOCVAULT provides AI-assisted contract analysis and clause identification services. Our analysis is generated by artificial intelligence and machine learning algorithms. While we strive for accuracy, <strong>AI analysis may contain errors, omissions, or misinterpretations of legal language</strong>.</p>
+
+        <div class="warning-box">
+          <strong>⚠️ IMPORTANT:</strong> DOCVAULT is NOT a substitute for professional legal advice. All analysis results must be reviewed, verified, and approved by a qualified legal professional before any action is taken. This tool enhances efficiency, not expertise.
+        </div>
+
+        <h3>2. Professional Legal Review Required</h3>
+        <p>You acknowledge that:</p>
+        <ul>
+          <li>All contract analysis must be reviewed by a licensed attorney</li>
+          <li>The attorney bears full responsibility for legal accuracy and compliance</li>
+          <li>Analysis is advisory only and not binding legal guidance</li>
+          <li>Final contract decisions rest solely with the qualified legal professional</li>
+        </ul>
+
+        <h3>3. Accuracy Limitations</h3>
+        <p>Our accuracy metrics represent statistical performance on training datasets. In practice:</p>
+        <ul>
+          <li>False positives and false negatives may occur</li>
+          <li>Complex or unusual contract language may not be identified correctly</li>
+          <li>Industry-specific clauses may require additional verification</li>
+          <li>Contractual implications depend on specific jurisdiction and context</li>
+        </ul>
+
+        <h3>4. No Legal Representation</h3>
+        <p>This platform does not provide legal services, legal advice, or legal representation. We are not attorneys, and the platform does not create an attorney-client relationship. You are responsible for engaging qualified legal counsel to review all contracts.</p>
+
+        <h3>5. Data Security & Confidentiality</h3>
+        <p>We implement industry-standard security measures:</p>
+        <ul>
+          <li>Documents are encrypted in transit (TLS 1.3) and at rest (AES-256)</li>
+          <li>Contracts are deleted after analysis (zero persistent storage)</li>
+          <li>No training on customer documents without explicit consent</li>
+          <li>Compliance with SOC 2 Type II and GDPR standards</li>
+        </ul>
+
+        <h3>6. Limitation of Liability</h3>
+        <p>To the maximum extent permitted by law, we shall not be liable for:</p>
+        <ul>
+          <li>Direct, indirect, incidental, special, consequential, or punitive damages</li>
+          <li>Loss of profits, revenue, data, or goodwill</li>
+          <li>Errors or inaccuracies in AI analysis results</li>
+          <li>Failure to identify specific contract clauses or risks</li>
+          <li>Misuse of analysis by non-qualified professionals</li>
+        </ul>
+
+        <h3>7. Indemnification</h3>
+        <p>User agrees to indemnify and hold harmless our platform, its officers, employees, and agents from any claims, damages, losses, or expenses arising from misuse of analysis results, failure to obtain proper legal review, or reliance on AI analysis without attorney verification.</p>
+
+        <h3>8. User Responsibility</h3>
+        <p>By using this platform, you assume all responsibility and risk associated with reliance on AI analysis. You acknowledge that contract analysis requires professional judgment and human expertise. No warranty is made regarding the completeness, accuracy, or fitness of the analysis.</p>
+
+        <h3>9. Acceptance of Terms</h3>
+        <p>By checking the acceptance box, you acknowledge that you have read and understand these Terms & Conditions, will use this tool as an advisory tool only, will ensure proper legal review before acting on analysis, and assume all responsibility for use and outcomes.</p>
+      </div>
+
+      <!-- Footer -->
+      <div class="terms-modal-footer">
+        <button class="btn-close-terms" onclick="closeTermsModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
