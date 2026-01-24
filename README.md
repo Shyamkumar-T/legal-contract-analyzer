@@ -1,4 +1,4 @@
-# 🏛️ DICVAULT - Legal Contract Analyzer
+# 🏛️ DOCVAULT - Legal Contract Analyzer
 
 AI-powered contract analysis platform for legal professionals and law firms.
 
