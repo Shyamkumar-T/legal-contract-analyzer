@@ -50,3 +50,6 @@ MIT License - Free to use and modify
 ## Disclaimer
 
 ⚠️ This tool provides AI-assisted analysis only. Always consult with a qualified attorney before signing contracts.
+## 🌐 Live Website
+[https://lexalyze.netlify.app](https://lexalyze.netlify.app/)
+
